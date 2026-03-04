@@ -1,0 +1,149 @@
+
+/* Remove default spacing */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* MAIN FULL SCREEN LAYOUT */
+.signup-layout {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* LEFT SIDE */
+.left-side {
+  flex: 1;
+  position: relative;
+  background-image: url("https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=2070&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding: 80px;
+  color: white;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.hero-text {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+}
+
+.hero-text h1 {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 25px;
+}
+
+.hero-text p {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* RIGHT SIDE */
+.right-side {
+  flex: 1;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* FORM */
+.form-wrapper {
+  width: 380px;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+}
+
+.logo img {
+  width: 90px;      /* adjust size here */
+  height: auto;
+  object-fit: contain;
+}
+
+h2 {
+  color: #1B055E;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1B055E;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 18px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #1B055E;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(27, 5, 94, 0.1);
+}
+
+button {
+  padding: 13px;
+  background-color: #1B055E;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #140346;
+}
+
+.login-text {
+  margin-top: 25px;
+  font-size: 14px;
+  color: #777;
+  text-align: center;
+}
+
+.login-text span {
+  color: #1B055E;
+  font-weight: 600;
+  cursor: pointer;
+}
