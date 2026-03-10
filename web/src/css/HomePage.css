@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.main-container {
+  width: 100%;
+}
+
+/* HERO IMAGE WITH TEXT OVERLAY */
+.airplane-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* full screen */
+  overflow: hidden;
+}
+
+.airplane-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* TEXT OVERLAY */
+.hero-text-overlay {
+  position: absolute;
+  top: 50%;       /* vertical center */
+  left: 4%;      /* move text to left side */
+  transform: translateY(-50%); /* only vertical centering */
+  color: white;
+  text-align: left;
+  z-index: 2;
+  padding: 0 20px;
+  max-width: 850px; /* optional: keeps text from stretching too wide */
+}
+
+.hero-text-overlay h1 {
+  font-size: 50px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+
+.hero-text-overlay p {
+  font-size: 24px;
+  font-weight: 500;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-text-overlay h1 {
+    font-size: 36px;
+  }
+
+  .hero-text-overlay p {
+    font-size: 16px;
+  }
+}
+
+/* ===== STACKED FLOATING IMAGES ===== */
+.image-stack {
+  position: absolute;
+  right: 4%;
+  top: 45%;
+  transform: translateY(-50%);
+  width: 600px;
+  height: 420px;
+  z-index: 2;
+}
+
+/* Base style for all cards */
+.stack-img {
+  position: absolute;
+  width: 200px;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  transition: 0.3s ease;
+}
+
+/* CENTER (front) */
+.img3 {
+  left: 200px;
+  top: 40px;
+  z-index: 5;
+  width: 220px;
+  height: 370px;
+}
+
+/* LEFT FRONT */
+.img2 {
+  left: 38px;
+  top: 100px;
+  z-index: 4;
+}
+
+/* RIGHT FRONT */
+.img4 {
+  left: 380px;
+  top: 100px;
+  z-index: 4;
+}
+
+

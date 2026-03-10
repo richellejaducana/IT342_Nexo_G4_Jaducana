@@ -23,7 +23,7 @@ public class UserService {
             return "Username already exists!";
         }
 
-        UserEntity user = User.builder()
+        UserEntity user = UserEntity.builder()
                 .email(email)
                 .username(username)
                 .password(passwordEncoder.encode(password))

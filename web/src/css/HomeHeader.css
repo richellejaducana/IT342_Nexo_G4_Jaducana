@@ -1,0 +1,75 @@
+/* ===== HEADER ===== */
+.header {
+  position: absolute;           /* overlay on top of hero image */
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+
+  background: transparent;      /* fully transparent */
+  box-shadow: none;             /* remove shadow */
+
+  height: 80px;                 /* optional fixed height */
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+/* Centered content */
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+}
+
+/* LOGO */
+.logo img {
+  margin-top: 35px;
+  margin-left: 0px;
+  height: 65px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+/* NAVIGATION */
+.nav {
+  margin-left: auto;        /* pushes nav to the right */
+  display: flex;
+  gap: 40px;
+}
+
+.nav a {
+  position: relative;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: white;              /* change to white for visibility on image */
+  transition: 0.3s ease;
+}
+
+/* Hover underline animation */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background-color: white;   /* underline also white */
+  transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+.nav a:hover {
+  color: #ffffff;            /* keep hover white */
+}

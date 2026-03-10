@@ -1,4 +1,4 @@
-package com.nexo_backend.entity;
+package com.nexo.nexo_backend.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;
