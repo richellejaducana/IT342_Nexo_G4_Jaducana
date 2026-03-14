@@ -9,7 +9,8 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   
@@ -24,7 +25,8 @@ const SignUpPage = () => {
         },
         body: JSON.stringify({
           email,
-          username,
+          firstname,
+          lastname,
           password,
           confirmPassword
         })
@@ -88,13 +90,30 @@ const SignUpPage = () => {
               required
             />
 
-            <label>Username</label>
-            <input
-              type="text"
-              placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
+            {/* First + Last Name Row */}
+  <div className="name-row">
+
+    <div className="input-group">
+      <label>First Name</label>
+      <input
+        type="text"
+        placeholder="First Name"
+        onChange={(e) => setFirstname(e.target.value)}
+        required
+      />
+    </div>
+
+    <div className="input-group">
+      <label>Last Name</label>
+      <input
+        type="text"
+        placeholder="Last Name"
+        onChange={(e) => setLastname(e.target.value)}
+        required
+      />
+    </div>
+
+  </div>
 
             <label>Password</label>
             <input

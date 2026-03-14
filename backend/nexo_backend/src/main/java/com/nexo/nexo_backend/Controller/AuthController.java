@@ -23,7 +23,8 @@ public class AuthController {
 
         String response = userService.registerUser(
                 request.getEmail(),
-                request.getUsername(),
+                request.getFirstname(),
+                request.getLastname(),
                 request.getPassword());
 
         return ResponseEntity.ok(response);
@@ -33,7 +34,8 @@ public class AuthController {
 @Data
 class SignupRequest {
     private String email;
-    private String username;
+    private String firstname;
+    private String lastname;
     private String password;
     private String confirmPassword;
 }

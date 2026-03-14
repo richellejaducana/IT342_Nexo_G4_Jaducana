@@ -147,3 +147,14 @@ button:hover {
   font-weight: 600;
   cursor: pointer;
 }
+/* First and Last Name side by side */
+.name-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}

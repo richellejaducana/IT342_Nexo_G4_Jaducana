@@ -11,11 +11,11 @@ background:#f6f7fb;
 
 /* NAVBAR */
 
-.navbar{
+.header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 60px;
+padding:15px 0px;   /* reduce left padding */ /* smaller padding moves logo more left */
 background:white;
 border-bottom:1px solid #eee;
 }
@@ -25,6 +25,7 @@ color:#5b4dff;
 font-weight:700;
 align-items:center;
 }
+
 
 .nav-search input{
 width:400px;

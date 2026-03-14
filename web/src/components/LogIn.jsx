@@ -22,6 +22,9 @@ const LogIn = () => {
     // redirect to dashboard
   navigate("/userDashboard");
   };
+  const handleGoogleLogin = () => {
+  window.location.href = "http://localhost:8080/oauth2/authorization/google";
+};
 
   return (
     <div className="signup-layout">
@@ -75,6 +78,31 @@ const LogIn = () => {
             />
 
             <button type="submit">Log In</button>
+            <button
+  type="button"
+  onClick={handleGoogleLogin}
+  style={{
+    marginTop: "10px",
+    width: "100%",
+    padding: "10px",
+    borderRadius: "6px",
+    border: "1px solid #ccc",
+    background: "#fff",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "10px",
+    cursor: "pointer"
+  }}
+>
+  <img
+    src="https://developers.google.com/identity/images/g-logo.png"
+    alt="Google"
+    style={{ width: "18px", height: "18px" }}
+  />
+  Continue with Google
+</button>
+            
           </form>
 
           <p className="login-text">

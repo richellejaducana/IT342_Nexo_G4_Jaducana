@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/UserDashboard.css";
-
+import DashboardHeader from "./header/DashboardHeader.jsx";
 const events = [
   {
     id: 1,
@@ -55,21 +55,8 @@ const events = [
 const Dashboard = () => {
   return (
     <div className="dashboard">
-
-      {/* NAVBAR */}
-      <nav className="navbar">
-        <div className="nav-left">
-          <h2 className="logo">NEXO</h2>
-        </div>
-
-        <div className="nav-search">
-          <input placeholder="Search events, categories, location..." />
-        </div>
-
-        <div className="nav-right">
-          <div className="profile">RJ</div>
-        </div>
-      </nav>
+        <DashboardHeader />
+      
 
 
       {/* HERO SEARCH SECTION */}

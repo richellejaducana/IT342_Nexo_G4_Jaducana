@@ -13,19 +13,16 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public String registerUser(String email, String username, String password) {
+    public String registerUser(String email, String firstname, String lastname, String password) {
 
         if (userRepository.existsByEmail(email)) {
             return "Email already exists!";
         }
 
-        if (userRepository.existsByUsername(username)) {
-            return "Username already exists!";
-        }
-
         UserEntity user = UserEntity.builder()
                 .email(email)
-                .username(username)
+                .firstname(firstname)
+                .lastname(lastname)
                 .password(passwordEncoder.encode(password))
                 .build();
 
