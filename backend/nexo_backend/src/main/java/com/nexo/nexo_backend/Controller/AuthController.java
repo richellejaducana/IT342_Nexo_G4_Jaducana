@@ -29,6 +29,15 @@ public class AuthController {
 
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        var user = userService.loginUser(request.getEmail(), request.getPassword());
+        if (user == null) {
+            return ResponseEntity.status(401).body("Invalid credentials");
+        }
+        return ResponseEntity.ok(new UserInfoResponse(user.getFirstname(), user.getLastname(), user.getEmail(),user.getRole()));
+    }
 }
 
 @Data
@@ -38,4 +47,19 @@ class SignupRequest {
     private String lastname;
     private String password;
     private String confirmPassword;
+}
+
+@Data
+class LoginRequest {
+    private String email;
+    private String password;
+}
+
+@Data
+@lombok.AllArgsConstructor
+class UserInfoResponse {
+    private String firstname;
+    private String lastname;
+    private String email;
+    private String role;
 }

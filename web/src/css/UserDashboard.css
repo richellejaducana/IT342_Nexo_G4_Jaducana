@@ -6,8 +6,9 @@ font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body{
-background:#f6f7fb;
+background:#ffffff;
 }
+
 
 /* NAVBAR */
 
@@ -65,42 +66,67 @@ font-weight:bold;
 
 /* HERO SECTION */
 
-.hero{
-text-align:center;
-padding:70px 20px 40px;
-background:white;
+.hero {
+  width: 100%;
+  height: 600px; /* full height of the hero */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  color: white;
+  position: relative;
+
+  transition: background-image 1s ease-in-out; /* smooth fade effect */
 }
 
-.hero h1{
-font-size:36px;
-margin-bottom:10px;
+/* optional dark overlay for readability */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
 }
 
-.hero p{
-color:#666;
-margin-bottom:25px;
+.hero h1,
+.hero p,
+.hero-search {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.hero-search input {
+  width: 400px;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
 }
 
 .hero-search{
 display:flex;
 justify-content:center;
+align-items:stretch;
 gap:10px;
-}
-
-.hero-search input{
-width:400px;
-padding:12px;
-border-radius:6px;
-border:1px solid #ccc;
-}
-
-.hero-search button{
-background:#5b4dff;
-color:white;
-border:none;
-padding:12px 20px;
-border-radius:6px;
-cursor:pointer;
 }
 
 

@@ -28,4 +28,7 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
+    @Builder.Default
+    @Column(nullable = false)
+    private String role = "ROLE_USER";
 }

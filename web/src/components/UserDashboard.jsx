@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../css/UserDashboard.css";
 import DashboardHeader from "./header/DashboardHeader.jsx";
+
+const heroImages = [
+  "https://i.pinimg.com/1200x/7b/b7/47/7bb7471424350e75d03e6122f5033a5c.jpg",
+  "https://i.pinimg.com/1200x/35/bf/b6/35bfb6e07653f0c688b2b9528489f520.jpg",
+  "https://i.pinimg.com/1200x/18/be/1f/18be1f7af1db345172b4096613fef6a2.jpg"
+];
+
 const events = [
   {
     id: 1,
@@ -53,20 +60,31 @@ const events = [
 ];
 
 const Dashboard = () => {
+
+    const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="dashboard">
         <DashboardHeader />
       
-
-
       {/* HERO SEARCH SECTION */}
-      <section className="hero">
+      <section
+        className="hero"
+        style={{ backgroundImage: `url(${heroImages[currentImage]})` }}
+      >
         <h1>Discover Events in Cebu</h1>
         <p>Find workshops, music festivals, tech events and more.</p>
 
         <div className="hero-search">
           <input placeholder="Search events..." />
-          <button>Search</button>
         </div>
       </section>
 

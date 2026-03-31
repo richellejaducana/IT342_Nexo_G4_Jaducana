@@ -12,15 +12,36 @@ const LogIn = () => {
   const [email, setEmail] = useState(location.state?.email || "");
   const [password, setPassword] = useState(location.state?.password || "");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    localStorage.removeItem("user"); // ADD THIS BEFORE LOGIN
     e.preventDefault();
 
-    // temporary login logic
-    console.log("Email:", email);
-    console.log("Password:", password);
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+      });
 
-    // redirect to dashboard
+      if (!response.ok) {
+        alert("Invalid credentials");
+        return;
+      }
+
+      const user = await response.json();
+      console.log(user); // 👈 ADD THIS
+      localStorage.setItem("user", JSON.stringify(user));
+      if (user.role === "ROLE_ADMIN") {
+  navigate("/adminDashboard");
+} else {
   navigate("/userDashboard");
+}
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong");
+    }
   };
   const handleGoogleLogin = () => {
   window.location.href = "http://localhost:8080/oauth2/authorization/google";

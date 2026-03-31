@@ -24,10 +24,21 @@ public class UserService {
                 .firstname(firstname)
                 .lastname(lastname)
                 .password(passwordEncoder.encode(password))
+                .role("ROLE_USER")
                 .build();
 
         userRepository.save(user);
 
         return "User registered successfully!";
+    }
+
+    public UserEntity loginUser(String email, String password) {
+        var userOpt = userRepository.findByEmail(email);
+        if (userOpt.isEmpty())
+            return null;
+        var user = userOpt.get();
+        if (!passwordEncoder.matches(password, user.getPassword()))
+            return null;
+        return user;
     }
 }

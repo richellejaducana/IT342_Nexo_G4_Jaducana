@@ -1,0 +1,101 @@
+/* ===== HEADER ===== */
+.header {
+  position: fixed;           /* overlay on top of hero image */
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+
+  background: rgba(255, 255, 255, 0.0);  /* slight transparency */
+  backdrop-filter: blur(6px);             /* subtle blur */
+  -webkit-backdrop-filter: blur(6px);      /* fully transparent */
+  box-shadow: none;             /* remove shadow */
+  border-bottom: none; 
+  height: 80px;                 /* optional fixed height */
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+
+/* Centered content */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+}
+
+/* LOGO */
+.logo img {
+  margin-top: 25px;
+  margin-left: 0px;
+  height: 55px;
+  cursor: pointer;
+  transition: 0.3s ease;
+   align-items: center;
+  justify-content: center;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+/* NAVIGATION */
+.navigation {
+  margin-left: auto;        /* pushes nav to the right */
+  display: flex;
+  gap: 40px;
+}
+
+.navigation a {
+  position: relative;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #ffffff;              /* change to white for visibility on image */
+  transition: 0.3s ease;
+}
+
+/* Hover underline animation */
+.navigation a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background-color: #82cff8;   /* underline also white */
+  transition: width 0.3s ease;
+}
+
+.navigation a:hover::after {
+  width: 100%;
+}
+
+.navigation a:hover {
+  color: #82cff8            /* keep hover white */
+}
+
+/* PROFILE CIRCLE */
+
+.profile-circle{
+  margin-left: 25px;
+
+  width: 55px;
+  height: 55px;
+
+  border-radius: 50%;
+  background-color: #ffffff;
+
+  color: #1B055E;
+  font-weight: 600;
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
