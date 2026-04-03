@@ -1,0 +1,277 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: #ffffff;
+}
+
+/* CONTAINER */
+.event-details-container {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+/* HERO IMAGE SECTION */
+.event-hero {
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(135deg, #5b4dff 0%, #8b7aff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.event-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CONTENT SECTION */
+.event-content {
+  padding: 40px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* BACK BUTTON */
+.back-btn {
+  background: none;
+  border: none;
+  color: #5b4dff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.back-btn:hover {
+  background: #f0f0f5;
+}
+
+.back-btn.secondary {
+  color: #5b4dff;
+  border: 2px solid #5b4dff;
+  background: white;
+  padding: 10px 20px;
+  font-size: 13px;
+}
+
+.back-btn.secondary:hover {
+  background: #f0f0f5;
+}
+
+/* EVENT CARD WRAPPER */
+.event-card-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  margin-bottom: 40px;
+}
+
+/* EVENT HEADER */
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+}
+
+.event-header h1 {
+  font-size: 36px;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+}
+
+.event-badge {
+  display: inline-block;
+  background: #5b4dff;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* INFO GRID */
+.event-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-item label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #5b4dff;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-item p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* ADDRESS SECTION */
+.event-address-section {
+  background: #f6f7fb;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.event-address-section label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #5b4dff;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.address-text {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.city-text {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+/* DESCRIPTION SECTION */
+.event-description-section {
+  margin-bottom: 30px;
+}
+
+.event-description-section label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #5b4dff;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.description-text {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.8;
+  background: #f6f7fb;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #5b4dff;
+}
+
+/* ACTIONS */
+.event-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
+}
+
+.register-btn {
+  flex: 1;
+  background: #5b4dff;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.register-btn:hover {
+  background: #4a3dcc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(91, 77, 255, 0.3);
+}
+
+/* LOADING & ERROR STATES */
+.event-loading,
+.event-error {
+  padding: 80px 60px;
+  text-align: center;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.event-loading p {
+  font-size: 16px;
+  color: #666;
+}
+
+.event-error h2 {
+  font-size: 20px;
+  color: #d32f2f;
+  margin-bottom: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .event-content {
+    padding: 20px 20px;
+  }
+
+  .event-card-wrapper {
+    padding: 20px;
+  }
+
+  .event-header h1 {
+    font-size: 24px;
+  }
+
+  .event-info-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .event-actions {
+    flex-direction: column;
+  }
+
+  .back-btn {
+    width: 100%;
+    text-align: left;
+  }
+
+  .register-btn {
+    width: 100%;
+  }
+
+  .event-hero {
+    height: 300px;
+  }
+}

@@ -1,38 +1,89 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../css/AdminDashboard.css";
+import { useEffect } from "react";
+const MENU_ITEMS = [
+  "Dashboard",
+  "Admin Profile",
+  "Create Event",
+  "Manage Events",
+  "Users",
+];
 
 const AdminDashboard = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [events, setEvents] = useState([]);
+  const [active, setActive] = useState("Dashboard");
+  const user = JSON.parse(localStorage.getItem("user")) || {};
+  const navigate = useNavigate();
+
+  const fetchEvents = async () => {
+  try {
+    const res = await fetch("http://localhost:8080/api/events");
+    const data = await res.json();
+    setEvents(data);
+  } catch (err) {
+    console.error("Failed to fetch events:", err);
+  }
+};
+
+  const handleMenuClick = (item) => {
+    setActive(item);
+    switch (item) {
+      case "Create Event":
+        navigate("/create-event");
+        break;
+      case "Dashboard":
+        navigate("/admin-dashboard");
+        break;
+      case "Admin Profile":
+        navigate("/admin-profile");
+        break;
+      case "Manage Events":
+        navigate("/manage-events");
+        break;
+      case "Users":
+        navigate("/users");
+        break;
+      default:
+        break;
+    }
+  };
+useEffect(() => {
+  fetchEvents();
+}, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
 
   return (
-    <div style={{ padding: "30px" }}>
-      <h1>Admin Dashboard</h1>
+    <div className="admin-dashboard">
+      <aside className="sidebar">
+        <div className="sidebar-top">
+          <h2 className="app-title">Nexo Admin</h2>
+        </div>
 
-      <hr />
+        <nav className="admin-nav">
+          {MENU_ITEMS.map((item) => (
+            <button
+              key={item}
+              className={`nav-item ${active === item ? "active" : ""}`}
+              onClick={() => handleMenuClick(item)}
+            >
+              {item}
+            </button>
+          ))}
+        </nav>
 
-      <h3>Welcome, {user?.firstname} {user?.lastname}</h3>
-      <p>Email: {user?.email}</p>
-      <p style={{ color: "red", fontWeight: "bold" }}>
-        Role: {user?.role}
-      </p>
+        <div className="sidebar-bottom">
+          <button className="logout-btn" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+      </aside>
 
-      <div style={{ marginTop: "20px" }}>
-        <button
-          onClick={() => {
-            localStorage.removeItem("user");
-            window.location.href = "/login";
-          }}
-          style={{
-            padding: "10px 20px",
-            backgroundColor: "#ff4d4f",
-            color: "white",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer"
-          }}
-        >
-          Logout
-        </button>
-      </div>
+      
     </div>
   );
 };

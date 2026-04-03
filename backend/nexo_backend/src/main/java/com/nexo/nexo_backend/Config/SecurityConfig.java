@@ -6,12 +6,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
+import java.util.List;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
@@ -23,13 +27,15 @@ public class SecurityConfig {
 
             http
                     .csrf(csrf -> csrf.disable())
-                    .cors(cors -> {}) // ✅ ADD THIS LINE
+.sessionManagement(session -> session.sessionCreationPolicy(org.springframework.security.config.http.SessionCreationPolicy.STATELESS))
+                   .cors(cors -> cors.configurationSource(corsConfigurationSource())) // ✅ ADD THIS LINE
 
                                 .authorizeHttpRequests(auth -> auth
                                                 .requestMatchers(
                                                                 "/api/auth/**",
                                                                 "/oauth2/**",
-                                                                "/login/**")
+                                                                "/login/**",
+                                                        "/api/events/**" )
                                                 .permitAll()
                                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                                                 .anyRequest().authenticated())
@@ -68,4 +74,20 @@ public class SecurityConfig {
         public PasswordEncoder passwordEncoder() {
                 return new BCryptPasswordEncoder();
         }
+
+        @Bean
+public CorsConfigurationSource corsConfigurationSource() {
+    CorsConfiguration config = new CorsConfiguration();
+
+    config.setAllowedOrigins(List.of("http://localhost:5173"));
+    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    config.setAllowedHeaders(List.of("*"));
+    config.setAllowCredentials(true);
+
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", config);
+
+    return source;
+}
+
 }

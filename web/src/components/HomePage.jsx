@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/HomePage.css";
 import HomeHeader from "./header/HomeHeader.jsx";
 
 function HomePage() {
+  const navigate = useNavigate();
   return (
     <div className="main-container">
       <HomeHeader />
@@ -21,6 +23,7 @@ function HomePage() {
       Join with Nexo.
     </h1>
     <p>Find what excites you and be part of experiences that matter.</p>
+    <button className="get-started-btn" onClick={() => navigate('/signup')}>Get Started</button>
   </div>
 
   {/* STACKED IMAGES */}

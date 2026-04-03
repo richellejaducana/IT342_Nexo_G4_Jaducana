@@ -8,60 +8,27 @@ const heroImages = [
   "https://i.pinimg.com/1200x/18/be/1f/18be1f7af1db345172b4096613fef6a2.jpg"
 ];
 
-const events = [
-  {
-    id: 1,
-    title: "Tech Innovators Meetup",
-    date: "MAR 20",
-    location: "Cebu IT Park",
-    category: "Technology",
-    image: "https://images.unsplash.com/photo-1511578314322-379afb476865"
-  },
-  {
-    id: 2,
-    title: "Startup Networking Night",
-    date: "APR 02",
-    location: "Ayala Center Cebu",
-    category: "Business",
-    image: "https://images.unsplash.com/photo-1551818255-e6e10975bc17"
-  },
-  {
-    id: 3,
-    title: "Cebu Music Festival",
-    date: "MAY 15",
-    location: "SM Seaside Arena",
-    category: "Music",
-    image: "https://images.unsplash.com/photo-1506157786151-b8491531f063"
-  },
-  {
-    id: 4,
-    title: "React Development Workshop",
-    date: "JUN 10",
-    location: "CIT University",
-    category: "Workshop",
-    image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f"
-  },
-  {
-    id: 5,
-    title: "Photography Masterclass",
-    date: "JUL 05",
-    location: "Cebu Business Park",
-    category: "Art",
-    image: "https://i.pinimg.com/736x/5f/88/af/5f88affad8bb9a947ac9f66fb5334c3f.jpg"
-  },
-  {
-    id: 6,
-    title: "Fitness Bootcamp",
-    date: "AUG 12",
-    location: "Cebu City Sports Center",
-    category: "Sports",
-    image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438"
-  }
-];
-
 const Dashboard = () => {
 
-    const [currentImage, setCurrentImage] = useState(0);
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await fetch("http://localhost:8080/api/events");
+        const data = await res.json();
+        setEvents(data);
+      } catch (err) {
+        console.error("Failed to fetch events:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+  fetchEvents();
+}, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -115,17 +82,24 @@ const Dashboard = () => {
             <div key={event.id} className="event-card">
 
               <div className="event-image">
-                <img src={event.image} alt={event.title}/>
-                <span className="event-date">{event.date}</span>
+               <img
+  src={event.imageUrl || "https://via.placeholder.com/300"}
+  alt={event.eventName}
+/>
+               <span className="event-date">
+  {new Date(event.date).toDateString().slice(4, 10).toUpperCase()}
+</span>
               </div>
 
               <div className="event-details">
 
                 <span className="event-category">{event.category}</span>
 
-                <h3>{event.title}</h3>
+                <h3>{event.eventName}</h3>
 
-                <p className="event-location">{event.location}</p>
+<p className="event-location">
+  {event.locationName}, {event.city}
+</p>
 
                 <button className="view-btn">View Event</button>
 

@@ -19,9 +19,11 @@
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  padding: 0 20px;
 
   display: flex;
   align-items: center;
+  justify-content: space-between; /* 🔥 THIS pushes nav to right */
 }
 
 /* LOGO */
@@ -39,11 +41,17 @@
 
 /* NAVIGATION */
 .nav {
-  margin-left: auto;        /* pushes nav to the right */
-  display: flex;
-  gap: 40px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 100px;
+
+  margin-left: auto;   /* 🔥 THIS pushes it to the right */
 }
 
+.nav a {
+  display: inline-block !important; /* 🔥 prevents stacking */
+}
 .nav a {
   position: relative;
   text-decoration: none;
@@ -52,6 +60,7 @@
   letter-spacing: 1px;
   color: white;              /* change to white for visibility on image */
   transition: 0.3s ease;
+   padding: 5px 10px;
 }
 
 /* Hover underline animation */
