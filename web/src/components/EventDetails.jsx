@@ -30,11 +30,14 @@ const EventDetails = () => {
     const fetchEvent = async () => {
       try {
         setLoading(true);
-        const { data, error } = await supabase
-          .from('events')
-          .select('*')
-          .eq('id', id)
-          .single();
+       const response = await fetch(`http://localhost:8080/api/events/${id}`);
+
+if (!response.ok) {
+  throw new Error("Event not found");
+}
+
+const data = await response.json();
+setEvent(data);
 
         if (error) {
           setError('Event not found');
@@ -86,7 +89,7 @@ const EventDetails = () => {
 
       <div className="event-hero">
         <img
-          src={event.image || 'https://images.unsplash.com/photo-1511578314322-379afb476865'}
+        src={event.imageUrl || 'https://images.unsplash.com/photo-1511578314322-379afb476865'}
           alt={event.eventName}
           className="event-hero-image"
         />
@@ -148,9 +151,7 @@ const EventDetails = () => {
 
           <div className="event-actions">
             <button className="register-btn">Register for Event</button>
-            <button onClick={() => navigate('/userDashboard')} className="back-btn secondary">
-              Browse More Events
-            </button>
+           
           </div>
         </div>
       </div>

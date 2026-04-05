@@ -105,7 +105,7 @@ const payload = {
   ...form,
   imageUrl: imageUrl
 };
-
+console.log("SENDING DATA:", payload); // 👈 ADD THIS
 const response = await fetch("http://localhost:8080/api/events", {
   method: "POST",
   headers: { "Content-Type": "application/json" },

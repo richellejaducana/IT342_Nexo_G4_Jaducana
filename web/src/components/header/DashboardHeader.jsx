@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../css/DashboardHeader.css";
 import NexoLogo from "../../assets/Nexo-logo.png";
-
+import NotifEmoji from "../../assets/notif.png";
 function DashboardHeader() {
 
   const [initials, setInitials] = useState("");
@@ -33,7 +33,9 @@ useEffect(() => {
 
         <nav className="navigation">
           <a href="#home">HOME</a>
-         
+           <a href="#program">PROGRAMS</a>
+            <a href="#program">EVENTS</a>
+         <img src={NotifEmoji} alt="Notifications" className="notif-icon" />
         </nav>
 
         {/* PROFILE CIRCLE */}

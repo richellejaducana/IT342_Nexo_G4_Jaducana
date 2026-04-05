@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/UserDashboard.css";
 import DashboardHeader from "./header/DashboardHeader.jsx";
-
+import { useNavigate } from "react-router-dom";
 const heroImages = [
   "https://i.pinimg.com/1200x/7b/b7/47/7bb7471424350e75d03e6122f5033a5c.jpg",
   "https://i.pinimg.com/1200x/35/bf/b6/35bfb6e07653f0c688b2b9528489f520.jpg",
@@ -13,6 +13,18 @@ const Dashboard = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentImage, setCurrentImage] = useState(0);
+  const navigate = useNavigate();
+  const formatDate = (dateStr) => {
+  if (!dateStr) return "N/A";
+
+  const cleanDate = dateStr.split("T")[0];
+  const date = new Date(cleanDate + "T00:00:00");
+
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "2-digit",
+  }).toUpperCase();
+};
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -87,7 +99,7 @@ const Dashboard = () => {
   alt={event.eventName}
 />
                <span className="event-date">
-  {new Date(event.date).toDateString().slice(4, 10).toUpperCase()}
+  {formatDate(event.date)}
 </span>
               </div>
 
@@ -101,7 +113,12 @@ const Dashboard = () => {
   {event.locationName}, {event.city}
 </p>
 
-                <button className="view-btn">View Event</button>
+               <button
+  className="view-btn"
+  onClick={() => navigate(`/event/${event.id}`)}
+>
+  View Event
+</button>
 
               </div>
 

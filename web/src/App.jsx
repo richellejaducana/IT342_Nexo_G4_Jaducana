@@ -9,6 +9,9 @@ import AdminDashboard from './components/AdminDashboard'
 import AdminProfile from './components/AdminProfile'
 import CreateEvent from './components/CreateEvent'
 import OAuthSuccess from './components/OAuthSuccess'
+import EventDetails from "./components/EventDetails";
+import ManageEvent from "./components/ManageEvent";
+import EditEvent from "./components/EditEvent";
 function App() {
   
   return (
@@ -28,6 +31,9 @@ function App() {
        
         <Route path="/create-event" element={<CreateEvent />} />
         <Route path="/oauth-success" element={<OAuthSuccess />} />
+        <Route path="/event/:id" element={<EventDetails />} />
+        <Route path="/manage-events" element={<ManageEvent />} />
+<Route path="/edit-event/:id" element={<EditEvent />} />
        </Routes>
        </Router>
   )

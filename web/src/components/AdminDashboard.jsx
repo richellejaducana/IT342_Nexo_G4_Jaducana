@@ -44,6 +44,9 @@ const AdminDashboard = () => {
       case "Users":
         navigate("/users");
         break;
+      case "Create Program":
+        navigate("/create-program");
+        break;
       default:
         break;
     }

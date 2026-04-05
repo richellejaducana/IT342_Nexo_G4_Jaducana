@@ -99,3 +99,15 @@
 
   cursor: pointer;
 }
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between HOME and icon */
+}
+
+.notif-icon {
+  width: 23px;
+  height: 23px;
+  cursor: pointer;
+}

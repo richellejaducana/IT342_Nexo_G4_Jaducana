@@ -34,4 +34,41 @@ System.out.println("EVENT SAVED: " + saved);
     public ResponseEntity<?> getAllEvents() {
         return ResponseEntity.ok(eventService.getAllEvents());
     }
+    
+    @GetMapping("/{id}")
+public ResponseEntity<?> getEventById(@PathVariable Long id) {
+    return eventService.getEventById(id)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
+}
+
+@PutMapping("/{id}")
+public ResponseEntity<?> updateEvent(@PathVariable Long id, @Valid @RequestBody Event updatedEvent) {
+    return eventService.getEventById(id).map(event -> {
+        event.setEventName(updatedEvent.getEventName());
+        event.setLocationName(updatedEvent.getLocationName());
+        event.setAddress(updatedEvent.getAddress());
+        event.setCity(updatedEvent.getCity());
+        event.setDate(updatedEvent.getDate());
+        event.setStartTime(updatedEvent.getStartTime());
+        event.setEndTime(updatedEvent.getEndTime());
+        event.setTimeZone(updatedEvent.getTimeZone());
+        event.setDescription(updatedEvent.getDescription());
+        event.setImageUrl(updatedEvent.getImageUrl());
+
+        Event saved = eventService.createEvent(event);
+        return ResponseEntity.ok(saved);
+    }).orElse(ResponseEntity.notFound().build());
+}
+
+@DeleteMapping("/{id}")
+public ResponseEntity<?> deleteEvent(@PathVariable Long id) {
+    try {
+        eventService.deleteEvent(id);
+        return ResponseEntity.ok("Event deleted successfully");
+    } catch (Exception e) {
+        return ResponseEntity.badRequest().body("Delete failed");
+    }
+}
+
 }
