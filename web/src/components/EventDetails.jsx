@@ -109,10 +109,33 @@ setEvent(data);
           </div>
 
           <div className="event-info-grid">
-            <div className="info-item">
-              <label>Date</label>
-              <p>{formatDate(event.date)}</p>
-            </div>
+            {/* ✅ SINGLE EVENT VIEW */}
+{event.eventType === "single" && (
+  <div className="info-item">
+    <label>Date</label>
+    <p>{event.date ? formatDate(event.date) : 'Not specified'}</p>
+  </div>
+)}
+
+{/* ✅ RECURRING EVENT VIEW */}
+{event.eventType === "recurring" && (
+  <>
+    <div className="info-item">
+      <label>Start Date</label>
+      <p>{event.startDate ? formatDate(event.startDate) : 'Not specified'}</p>
+    </div>
+
+    <div className="info-item">
+      <label>End Date</label>
+      <p>{event.endDate ? formatDate(event.endDate) : 'Not specified'}</p>
+    </div>
+
+    <div className="info-item">
+      <label>Recurrence Days</label>
+      <p>{event.recurrenceDays || 'Not specified'}</p>
+    </div>
+  </>
+)}
 
             <div className="info-item">
               <label>Time</label>
@@ -132,6 +155,23 @@ setEvent(data);
               <label>Venue</label>
               <p>{event.locationName || 'Location not specified'}</p>
             </div>
+              
+              <div className="info-item">
+  <label>Event Type</label>
+  <p>{event.eventType || 'Not specified'}</p>
+</div>
+
+<div className="info-item">
+  <label>Slot Type</label>
+  <p>{event.slotType || 'Not specified'}</p>
+</div>
+
+{event.slotType === "limited" && (
+  <div className="info-item">
+    <label>Slot Limit</label>
+    <p>{event.slotLimit || 'N/A'}</p>
+  </div>
+)}
           </div>
 
           <div className="event-address-section">

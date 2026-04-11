@@ -27,7 +27,7 @@ public class AuthController {
                 request.getLastname(),
                 request.getPassword());
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(java.util.Map.of("message", response));
     }
 
     @PostMapping("/login")

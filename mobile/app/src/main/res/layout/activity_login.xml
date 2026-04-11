@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".RegisterActivity">
+
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/nexo" />
+
+    <TextView
+        android:id="@+id/homeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/archivo_extrabold"
+        android:text="Login to Nexo"
+        android:textAlignment="center"
+        android:textColor="@color/dark_violet"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_margin="30dp"
+        android:id="@+id/homeSubText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/archivo_medium"
+        android:text="Sign in to access your tickets and saved events."
+        android:textAlignment="center"
+        android:textColor="@color/grey"
+        android:textSize="25sp"
+        />
+
+
+    <LinearLayout
+        android:layout_width="450dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:padding="20dp"
+        android:background="@android:color/white"> <!-- White background for the layout -->
+
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@drawable/edittext"
+            android:layout_marginTop="20dp"
+            android:padding="8dp"
+            android:paddingStart="16dp"
+            android:hint="Email Account"
+            android:drawableLeft="@drawable/email_icon"
+            android:textColor="@color/black"
+            android:fontFamily="@font/archivo_medium"
+            android:drawablePadding="8dp"/>
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:background="@drawable/edittext"
+            android:layout_marginTop="20dp"
+            android:padding="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:hint="Password"
+            android:drawableLeft="@drawable/password_icon"
+            android:inputType="textPassword"
+            android:drawableRight="@drawable/eye_close"
+            android:textColor="@color/black"
+            android:fontFamily="@font/archivo_medium"
+            android:drawablePadding="8dp"/>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="360dp"
+        android:layout_gravity="center"
+        android:layout_height="70dp"
+        android:text="Sign in"
+        app:backgroundTint="@null"
+        android:textSize="25sp"
+        android:layout_marginTop="5dp"
+        android:padding="8dp"
+        android:background="@drawable/button_fiiled"
+        android:textStyle="bold"
+        app:cornerRadius="20dp"/>
+
+    <TextView
+        android:id="@+id/text_join_nexus"
+        android:layout_margin="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/archivo_medium"
+        android:text="Don't have an account? Join the Nexus."
+        android:textAlignment="center"
+        android:textColor="@color/grey"
+        android:textSize="20sp"
+        />
+
+
+
+</LinearLayout>

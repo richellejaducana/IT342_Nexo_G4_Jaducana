@@ -14,16 +14,30 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [currentImage, setCurrentImage] = useState(0);
   const navigate = useNavigate();
-  const formatDate = (dateStr) => {
-  if (!dateStr) return "N/A";
+ const formatEventDate = (event) => {
+  // ✅ SINGLE EVENT
+  if (event.eventType === "single" && event.date) {
+    const cleanDate = event.date.split("T")[0];
+    const date = new Date(cleanDate + "T00:00:00");
 
-  const cleanDate = dateStr.split("T")[0];
-  const date = new Date(cleanDate + "T00:00:00");
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "2-digit",
+    }).toUpperCase();
+  }
 
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "2-digit",
-  }).toUpperCase();
+  // ✅ RECURRING EVENT → use startDate
+  if (event.eventType === "recurring" && event.startDate) {
+    const cleanDate = event.startDate.split("T")[0];
+    const date = new Date(cleanDate + "T00:00:00");
+
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "2-digit",
+    }).toUpperCase();
+  }
+
+  return "N/A";
 };
 
   useEffect(() => {
@@ -99,7 +113,7 @@ const Dashboard = () => {
   alt={event.eventName}
 />
                <span className="event-date">
-  {formatDate(event.date)}
+ {formatEventDate(event)}
 </span>
               </div>
 

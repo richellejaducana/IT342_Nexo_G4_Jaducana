@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".HomeActivity">
+
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/nexo"
+        android:layout_marginBottom="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="24dp"
+            android:background="@android:color/white"> <!-- White background for the layout -->
+
+            <TextView
+                android:id="@+id/homeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/archivo_extrabold"
+                android:text="NEXO"
+                android:textAlignment="center"
+                android:textColor="@color/dark_violet"
+                android:textSize="50sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/homeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/archivo_bold"
+                android:text="Where You Meet the Moment."
+                android:textAlignment="center"
+                android:textColor="@color/dark_violet"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/homeSubText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/archivo_medium"
+                android:layout_marginTop="20sp"
+                android:text="Stop searching, start attending. Nexo connects you to the events that matter most to you."
+                android:textAlignment="center"
+                android:textColor="@color/grey"
+                android:textSize="20sp"
+                 />
+        </LinearLayout>
+
+
+            <Button
+                android:id="@+id/button_login"
+                android:layout_width="360dp"
+                android:layout_gravity="center"
+                android:layout_height="70dp"
+                android:text="Sign in"
+                app:backgroundTint="@null"
+                android:textSize="25sp"
+                android:layout_marginTop="35dp"
+                android:padding="5dp"
+                android:textColor="@color/white"
+                android:background="@drawable/button_fiiled"
+                android:drawablePadding="9dp"
+                android:textStyle="bold"
+                app:cornerRadius="20dp"/>
+
+            <Button
+                android:id="@+id/button_register"
+                android:layout_width="360dp"
+                android:layout_gravity="center"
+                android:layout_height="70dp"
+                android:text="Create an account"
+                android:textSize="25sp"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:background="@drawable/buttoncorners"
+                android:drawablePadding="9dp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_violet"
+                app:backgroundTint="@null"/>
+
+
+
+
+</LinearLayout>
