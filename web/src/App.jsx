@@ -14,6 +14,7 @@ import ManageEvent from "./components/ManageEvent";
 import EditEvent from "./components/EditEvent";
 import RegisterEvent from "./components/RegisterEvent";
 import PaymentPage from "./components/PaymentPage";
+import Users from "./components/Users";
 function App() {
   
   return (
@@ -29,6 +30,7 @@ function App() {
         
         
         <Route path="/admin-profile" element={<AdminProfile />}/>
+        <Route path="/users" element={<Users />} />
           
         <Route path="/register-event/:id" element={<RegisterEvent />} />
         <Route path="/create-event" element={<CreateEvent />} />
