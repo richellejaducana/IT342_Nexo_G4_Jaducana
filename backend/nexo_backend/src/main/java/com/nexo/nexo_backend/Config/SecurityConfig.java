@@ -4,8 +4,10 @@ import com.nexo.nexo_backend.Service.CustomOAuth2UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,60 +18,106 @@ import org.springframework.security.core.Authentication;
 import java.util.List;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+/**
+ * Spring Security configuration for the application.
+ * 
+ * Configures:
+ * - CSRF protection disabled (stateless API)
+ * - Stateless session management
+ * - JWT authentication via custom filter
+ * - OAuth2 login with Google
+ * - Role-based access control (ROLE_USER, ROLE_ADMIN)
+ * - CORS for frontend communication
+ */
 @Configuration
 @RequiredArgsConstructor
 public class SecurityConfig {
 
         private final CustomOAuth2UserService customOAuth2UserService;
+        private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
             http
                     .csrf(csrf -> csrf.disable())
-.sessionManagement(session -> session.sessionCreationPolicy(org.springframework.security.config.http.SessionCreationPolicy.STATELESS))
-                   .cors(cors -> cors.configurationSource(corsConfigurationSource())) // ✅ ADD THIS LINE
+                    .sessionManagement(session -> session.sessionCreationPolicy(org.springframework.security.config.http.SessionCreationPolicy.STATELESS))
+                    .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 
-                                .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers(
-                                                                "/api/auth/**",
-                                                                "/oauth2/**",
-                                                                "/login/**",
-                                                        "/api/events/**",
-                                                        "/api/registrations/**"
-                                                 )
-                                                .permitAll()
-                                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                                                .anyRequest().authenticated())
+                    // Add JWT filter before username/password authentication filter
+                    .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
 
-                        .oauth2Login(oauth -> oauth
-                                .userInfoEndpoint(user -> user
-                                        .userService(customOAuth2UserService)
-                                )
-                                .successHandler((request, response, authentication) -> {
-                                    System.out.println("✅ GOOGLE LOGIN SUCCESS");
+                    // Configure authorization rules
+                    .authorizeHttpRequests(auth -> auth
+                            // Public endpoints - no authentication required
+                            .requestMatchers(
+                                    "/api/auth/**",
+                                    "/oauth2/**",
+                                    "/login/**"
+                            )
+                            .permitAll()
+                            
+                            // Public event and registration endpoints
+                            .requestMatchers(HttpMethod.GET, "/api/events/**", "/api/registrations/**")
+                            .permitAll()
+                            
+                            // Admin endpoints - only ROLE_ADMIN
+                            .requestMatchers("/api/admin/**")
+                            .hasRole("ADMIN")
+                            
+                            // User endpoints - any authenticated user with ROLE_USER
+                            .requestMatchers("/api/user/**")
+                            .hasRole("USER")
+                            
+                            // All other requests require authentication
+                            .anyRequest()
+                            .authenticated()
+                    )
 
-                                    OAuth2User oauthUser = (OAuth2User) authentication.getPrincipal();
+                    // OAuth2 login configuration
+                    .oauth2Login(oauth -> oauth
+                            .userInfoEndpoint(user -> user
+                                    .userService(customOAuth2UserService)
+                            )
+                            .successHandler((request, response, authentication) -> {
+                                System.out.println("✅ GOOGLE LOGIN SUCCESS");
 
-                                    String email = oauthUser.getAttribute("email");
-                                    String name = oauthUser.getAttribute("name");
+                                OAuth2User oauthUser = (OAuth2User) authentication.getPrincipal();
 
-                                    if (name == null) name = "User";
+                                String email = oauthUser.getAttribute("email");
+                                String name = oauthUser.getAttribute("name");
 
-                                    String firstName = name.split(" ")[0];
-                                    String lastName = name.contains(" ") ? name.split(" ")[1] : "";
+                                if (name == null) name = "User";
 
-                                    String redirectUrl = "http://localhost:5173/oauth-success"
-                                            + "?firstname=" + firstName
-                                            + "&lastname=" + lastName
-                                            + "&email=" + email
-                                            + "&role=ROLE_USER";
+                                String firstName = name.split(" ")[0];
+                                String lastName = name.contains(" ") ? name.split(" ")[1] : "";
 
-                                    response.sendRedirect(redirectUrl);
-                                })
-                        );
+                                String redirectUrl = "http://localhost:5173/oauth-success"
+                                        + "?firstname=" + firstName
+                                        + "&lastname=" + lastName
+                                        + "&email=" + email
+                                        + "&role=ROLE_USER";
 
-                return http.build();
+                                response.sendRedirect(redirectUrl);
+                            })
+                    )
+                    
+                    // Handle authentication errors
+                    .exceptionHandling(exceptions -> exceptions
+                            .authenticationEntryPoint((request, response, authException) -> {
+                                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                                response.setContentType("application/json");
+                                response.getWriter().write("{\"error\": \"Unauthorized - Invalid or missing token\"}");
+                            })
+                            .accessDeniedHandler((request, response, accessDeniedException) -> {
+                                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                                response.setContentType("application/json");
+                                response.getWriter().write("{\"error\": \"Forbidden - Insufficient permissions\"}");
+                            })
+                    );
+
+            return http.build();
         }
 
         @Bean
