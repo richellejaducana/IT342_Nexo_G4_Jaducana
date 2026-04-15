@@ -1,0 +1,116 @@
+.payment-container {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.payment-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 60px;
+}
+
+.payment-header {
+  margin-bottom: 30px;
+}
+
+.payment-header h1 {
+  font-size: 32px;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.payment-header p {
+  color: #666;
+  font-size: 14px;
+}
+
+.payment-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.payment-section-title {
+  font-size: 18px;
+  color: #5b4dff;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.payment-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.payment-form-group {
+  margin-bottom: 20px;
+}
+
+.payment-form-group select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.payment-payment-box {
+  background: #f6f7fb;
+  border-left: 4px solid #5b4dff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.payment-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.payment-back-btn {
+  flex: 1;
+  border: 2px solid #5b4dff;
+  background: white;
+  color: #5b4dff;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.payment-submit-btn {
+  flex: 2;
+  background: #5b4dff;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.payment-hero {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.payment-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.payment-back-link {
+  margin-bottom: 20px;
+  background: none;
+  border: none;
+  color: #5b4dff;
+  cursor: pointer;
+}
+
+.payment-error {
+  text-align: center;
+  padding: 50px;
+  color: red;
+}

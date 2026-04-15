@@ -36,7 +36,7 @@ public class AuthController {
         if (user == null) {
             return ResponseEntity.status(401).body("Invalid credentials");
         }
-        return ResponseEntity.ok(new UserInfoResponse(user.getFirstname(), user.getLastname(), user.getEmail(),user.getRole()));
+        return ResponseEntity.ok(new UserInfoResponse( user.getId(),user.getFirstname(), user.getLastname(), user.getEmail(),user.getRole()));
     }
 }
 
@@ -58,6 +58,7 @@ class LoginRequest {
 @Data
 @lombok.AllArgsConstructor
 class UserInfoResponse {
+     private Long id; // ✅ ADD THIS
     private String firstname;
     private String lastname;
     private String email;

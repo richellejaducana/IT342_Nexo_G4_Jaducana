@@ -41,7 +41,8 @@ const CreateEvent = () => {
   recurrenceDays: [],
   slotType: "unlimited",
   slotLimit: "",
- eventPrice: ""
+ eventPrice: "",
+  paymentType: "FREE" // ✅ ADD THIS LINE
   });
 
 
@@ -183,6 +184,12 @@ const response = await fetch("http://localhost:8080/api/events", {
         endTime: "",
         timeZone: "UTC",
         description: "",
+          eventType: "single",
+          startDate: "",
+  endDate: "",
+  recurrenceDays: [],
+  slotType: "unlimited",
+  slotLimit: "",
         eventPrice: "",
         paymentType: "FREE"
         

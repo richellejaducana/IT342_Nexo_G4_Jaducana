@@ -162,16 +162,22 @@ setEvent(data);
 </div>
 
 <div className="info-item">
-  <label>Slot Type</label>
-  <p>{event.slotType || 'Not specified'}</p>
+  <label>Payment</label>
+  <p>
+    {event.paymentType === "PAID"
+      ? `Fee - ₱${event.eventPrice ?? 0}`
+      : "Free"}
+  </p>
 </div>
 
-{event.slotType === "limited" && (
-  <div className="info-item">
-    <label>Slot Limit</label>
-    <p>{event.slotLimit || 'N/A'}</p>
-  </div>
-)}
+<div className="info-item">
+  <label>Slots</label>
+  <p>
+    {event.slotType === "limited"
+      ? `Limited - ${event.slotLimit ?? 0} slots`
+      : "Unlimited"}
+  </p>
+</div>
           </div>
 
           <div className="event-address-section">
@@ -190,7 +196,16 @@ setEvent(data);
           </div>
 
           <div className="event-actions">
-            <button className="register-btn">Register for Event</button>
+          <button
+  className="register-btn"
+  onClick={() =>
+    navigate(`/register-event/${event.id}`, {
+      state: { event }
+    })
+  }
+>
+  Register for Event
+</button>
            
           </div>
         </div>

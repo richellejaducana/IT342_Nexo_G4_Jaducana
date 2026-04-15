@@ -35,7 +35,9 @@ public class SecurityConfig {
                                                                 "/api/auth/**",
                                                                 "/oauth2/**",
                                                                 "/login/**",
-                                                        "/api/events/**" )
+                                                        "/api/events/**",
+                                                        "/api/registrations/**"
+                                                 )
                                                 .permitAll()
                                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                                                 .anyRequest().authenticated())

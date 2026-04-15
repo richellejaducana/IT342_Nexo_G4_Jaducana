@@ -1,0 +1,266 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* CONTAINER */
+.register-container {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+/* WRAPPER */
+.register-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 60px;
+}
+
+/* HEADER */
+.register-header {
+  margin-bottom: 30px;
+}
+
+.register-header h1 {
+  font-size: 32px;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.register-header p {
+  color: #666;
+  font-size: 14px;
+}
+
+/* CARD */
+.register-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+/* SECTION TITLE */
+.register-section-title {
+  font-size: 18px;
+  color: #5b4dff;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* INFO GRID */
+.register-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.register-info-grid label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #5b4dff;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.register-info-grid p {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* FORM */
+.register-form-group {
+  margin-bottom: 20px;
+}
+
+.register-form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.register-form-group input,
+.register-form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.register-form-group input:focus,
+.register-form-group textarea:focus {
+  border-color: #5b4dff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(91, 77, 255, 0.1);
+}
+
+.register-form-group textarea {
+  min-height: 90px;
+  resize: none;
+}
+
+/* PAYMENT BOX */
+.register-payment-box {
+  background: #f6f7fb;
+  border-left: 4px solid #5b4dff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.register-payment-box h3 {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #5b4dff;
+}
+
+.register-payment-box p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* CHECKBOX */
+.register-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.register-checkbox input {
+  width: 16px;
+  height: 16px;
+}
+
+.register-checkbox span {
+  font-size: 13px;
+  color: #555;
+}
+
+/* ACTION BUTTONS */
+.register-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.register-back-btn {
+  flex: 1;
+  background: white;
+  border: 2px solid #5b4dff;
+  color: #5b4dff;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.register-back-btn:hover {
+  background: #f0f0f5;
+}
+
+.register-submit-btn {
+  flex: 2;
+  background: #5b4dff;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.register-submit-btn:hover {
+  background: #4a3dcc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(91, 77, 255, 0.3);
+}
+
+/* STATES */
+.register-loading,
+.register-error {
+  padding: 80px;
+  text-align: center;
+}
+
+.register-loading {
+  color: #666;
+}
+
+.register-error {
+  color: #d32f2f;
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .register-wrapper {
+    padding: 20px;
+  }
+
+  .register-info-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .register-actions {
+    flex-direction: column;
+  }
+
+  .register-back-btn,
+  .register-submit-btn {
+    width: 100%;
+  }
+}
+
+/* HERO IMAGE */
+.register-hero {
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(135deg, #5b4dff 0%, #8b7aff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.register-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* BACK LINK (like EventDetails) */
+.register-back-link {
+  background: none;
+  border: none;
+  color: #5b4dff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.register-back-link:hover {
+  background: #f0f0f5;
+}

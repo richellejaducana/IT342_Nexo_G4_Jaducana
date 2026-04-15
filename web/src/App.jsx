@@ -12,6 +12,8 @@ import OAuthSuccess from './components/OAuthSuccess'
 import EventDetails from "./components/EventDetails";
 import ManageEvent from "./components/ManageEvent";
 import EditEvent from "./components/EditEvent";
+import RegisterEvent from "./components/RegisterEvent";
+import PaymentPage from "./components/PaymentPage";
 function App() {
   
   return (
@@ -28,12 +30,13 @@ function App() {
         
         <Route path="/admin-profile" element={<AdminProfile />}/>
           
-       
+        <Route path="/register-event/:id" element={<RegisterEvent />} />
         <Route path="/create-event" element={<CreateEvent />} />
         <Route path="/oauth-success" element={<OAuthSuccess />} />
         <Route path="/event/:id" element={<EventDetails />} />
         <Route path="/manage-events" element={<ManageEvent />} />
 <Route path="/edit-event/:id" element={<EditEvent />} />
+<Route path="/payment" element={<PaymentPage />} />
        </Routes>
        </Router>
   )
