@@ -27,3 +27,4 @@ dist-ssr
 # env files (IMPORTANT)
 .env
 .env.*
+backend/nexo_backend/.env 
