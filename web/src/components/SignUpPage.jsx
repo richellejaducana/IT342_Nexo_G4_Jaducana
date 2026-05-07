@@ -37,8 +37,7 @@ const SignUpPage = () => {
 
        // ✅ redirect to login and pass values
     if (data === "User registered successfully!") {
-      // Store user info in localStorage
-      localStorage.setItem("user", JSON.stringify({ email, firstname, lastname }));
+      // Don't store incomplete user data here - let login handle it
       navigate("/login", {
         state: { email: email, password: password }
       });

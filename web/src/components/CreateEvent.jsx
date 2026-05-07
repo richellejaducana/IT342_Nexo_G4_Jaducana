@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/CreateEvent.css";
 import "../css/AdminDashboard.css";
+import AdminHeader from "./header/AdminHeader.jsx";
 import { supabase } from "../utils/supabaseClient";
 const timeZones = [
   "UTC",
@@ -205,34 +206,15 @@ const response = await fetch("http://localhost:8080/api/events", {
 
   return (
     <div className="admin-dashboard create-event-page">
-      <aside className="sidebar">
-        <div className="sidebar-top">
-          <h2 className="app-title">Nexo Admin</h2>
-        </div>
-
-
-        <nav className="admin-nav">
-          <button className={`nav-item`} onClick={() => handleNavigate('/admin-dashboard')}>Dashboard</button>
-          <button className={`nav-item`} onClick={() => handleNavigate('/admin-profile')}>Admin Profile</button>
-          <button className={`nav-item active`} onClick={() => handleNavigate('/create-event')}>Create Event</button>
-          <button className={`nav-item`} onClick={() => handleNavigate('/manage-events')}>Manage Events</button>
-          <button className={`nav-item`} onClick={() => handleNavigate('/users')}>Users</button>
-        </nav>
-
-
-        <div className="sidebar-bottom">
-          <button className="logout-btn" onClick={() => { localStorage.clear(); handleNavigate('/login'); }}>Logout</button>
-        </div>
-      </aside>
-
+      <AdminHeader />
 
       <main className="main-content">
-        <header className="main-header">
+        <div className="main-header">
           <h1 className="welcome">Create Event</h1>
-        </header>
+          <p className="subtitle">Fill in the details to create a new event.</p>
+        </div>
 
-
-        <section className="cards-grid">
+        <div className="cards-grid">
           <div className="profile-card">
             <div className="profile-card-header">
               <div className="avatar">E</div>
@@ -241,7 +223,6 @@ const response = await fetch("http://localhost:8080/api/events", {
                 <p className="role">Administrator Tools</p>
               </div>
             </div>
-
 
             <div className="profile-card-body">
               <div className="info-row">
@@ -254,7 +235,6 @@ const response = await fetch("http://localhost:8080/api/events", {
               </div>
             </div>
           </div>
-
 
           <div className="stat-card">
             <div className="create-event-card">
@@ -452,10 +432,10 @@ const response = await fetch("http://localhost:8080/api/events", {
           </button>
                         </form>
       </div>
+        </div>
+      </div>
+      </main>
     </div>
-  </section>
-</main>
-</div>
   );
 };
 

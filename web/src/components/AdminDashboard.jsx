@@ -1,92 +1,69 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+﻿import React, { useEffect, useState } from "react";
 import "../css/AdminDashboard.css";
-import { useEffect } from "react";
-const MENU_ITEMS = [
-  "Dashboard",
-  "Admin Profile",
-  "Create Event",
-  "Manage Events",
-  "Users",
-];
+import AdminHeader from "./header/AdminHeader.jsx";
 
 const AdminDashboard = () => {
   const [events, setEvents] = useState([]);
-  const [active, setActive] = useState("Dashboard");
   const user = JSON.parse(localStorage.getItem("user")) || {};
-  const navigate = useNavigate();
 
-  const fetchEvents = async () => {
-  try {
-    const res = await fetch("http://localhost:8080/api/events");
-    const data = await res.json();
-    setEvents(data);
-  } catch (err) {
-    console.error("Failed to fetch events:", err);
-  }
-};
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const res = await fetch("http://localhost:8080/api/events");
+        const data = await res.json();
+        setEvents(data);
+      } catch (err) {
+        console.error("Failed to fetch events:", err);
+      }
+    };
 
-  const handleMenuClick = (item) => {
-    setActive(item);
-    switch (item) {
-      case "Create Event":
-        navigate("/create-event");
-        break;
-      case "Dashboard":
-        navigate("/admin-dashboard");
-        break;
-      case "Admin Profile":
-        navigate("/admin-profile");
-        break;
-      case "Manage Events":
-        navigate("/manage-events");
-        break;
-      case "Users":
-        navigate("/users");
-        break;
-      case "Create Program":
-        navigate("/create-program");
-        break;
-      default:
-        break;
-    }
-  };
-useEffect(() => {
-  fetchEvents();
-}, []);
-
-  const handleLogout = () => {
-    localStorage.clear();
-    window.location.href = "/login";
-  };
+    fetchEvents();
+  }, []);
 
   return (
     <div className="admin-dashboard">
-      <aside className="sidebar">
-        <div className="sidebar-top">
-          <h2 className="app-title">Nexo Admin</h2>
+      <AdminHeader />
+
+      <main className="main-content">
+        <div className="main-header">
+          <h1 className="welcome">Welcome back, {user.firstname || "Admin"}</h1>
+          <p className="subtitle">Manage events, users, and admin settings from one place.</p>
         </div>
 
-        <nav className="admin-nav">
-          {MENU_ITEMS.map((item) => (
-            <button
-              key={item}
-              className={`nav-item ${active === item ? "active" : ""}`}
-              onClick={() => handleMenuClick(item)}
-            >
-              {item}
-            </button>
-          ))}
-        </nav>
+        <div className="cards-grid">
+          <div className="profile-card">
+            <div className="profile-card-header">
+              <div className="avatar">
+                {`${user.firstname?.charAt(0) || ""}${user.lastname?.charAt(0) || ""}`.toUpperCase()}
+              </div>
+              <div>
+                <h3 className="name">{user.firstname || "Admin"} {user.lastname || "User"}</h3>
+                <p className="role">Administrator</p>
+              </div>
+            </div>
 
-        <div className="sidebar-bottom">
-          <button className="logout-btn" onClick={handleLogout}>
-            Logout
-          </button>
+            <div className="profile-card-body">
+              <div className="info-row">
+                <span className="label">Email</span>
+                <span className="value">{user.email || "Not available"}</span>
+              </div>
+              <div className="info-row">
+                <span className="label">Status</span>
+                <span className="value">Active</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="stat-card">
+            <h3 className="stat-title">Events Loaded</h3>
+            <p>{events.length} event{events.length === 1 ? "" : "s"} available</p>
+            <ul className="actions-list">
+              <li>Use the admin navigation to create or manage events.</li>
+              <li>Open Users to review the registered accounts.</li>
+            </ul>
+          </div>
         </div>
-      </aside>
-
-      
+      </main>
     </div>
   );
 };

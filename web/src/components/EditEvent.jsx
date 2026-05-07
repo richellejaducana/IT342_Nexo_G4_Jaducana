@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import AdminHeader from "./header/AdminHeader.jsx";
+import "../css/AdminDashboard.css";
 
 const EditEvent = () => {
   const { id } = useParams();
@@ -48,26 +50,33 @@ const EditEvent = () => {
   };
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h2>Edit Event</h2>
+    <div className="admin-dashboard">
+      <AdminHeader />
 
-      <form onSubmit={handleUpdate}>
+      <main className="main-content">
+        <div className="main-header">
+          <h1 className="welcome">Edit Event</h1>
+          <p className="subtitle">Update the event details below.</p>
+        </div>
 
-        <input name="eventName" value={form.eventName} onChange={handleChange} placeholder="Event Name" />
-        <input name="locationName" value={form.locationName} onChange={handleChange} placeholder="Location" />
-        <input name="address" value={form.address} onChange={handleChange} placeholder="Address" />
-        <input name="city" value={form.city} onChange={handleChange} placeholder="City" />
-
-        <input type="date" name="date" value={form.date} onChange={handleChange} />
-        <input type="time" name="startTime" value={form.startTime} onChange={handleChange} />
-        <input type="time" name="endTime" value={form.endTime} onChange={handleChange} />
-
-        <input name="timeZone" value={form.timeZone} onChange={handleChange} placeholder="Timezone" />
-
-        <textarea name="description" value={form.description} onChange={handleChange} />
-
-        <button type="submit">Update Event</button>
-      </form>
+        <div className="cards-grid">
+          <div className="stat-card">
+            <h2>Edit Event</h2>
+            <form onSubmit={handleUpdate}>
+              <input name="eventName" value={form.eventName} onChange={handleChange} placeholder="Event Name" />
+              <input name="locationName" value={form.locationName} onChange={handleChange} placeholder="Location" />
+              <input name="address" value={form.address} onChange={handleChange} placeholder="Address" />
+              <input name="city" value={form.city} onChange={handleChange} placeholder="City" />
+              <input type="date" name="date" value={form.date} onChange={handleChange} />
+              <input type="time" name="startTime" value={form.startTime} onChange={handleChange} />
+              <input type="time" name="endTime" value={form.endTime} onChange={handleChange} />
+              <input name="timeZone" value={form.timeZone} onChange={handleChange} placeholder="Timezone" />
+              <textarea name="description" value={form.description} onChange={handleChange} />
+              <button type="submit">Update Event</button>
+            </form>
+          </div>
+        </div>
+      </main>
     </div>
   );
 };

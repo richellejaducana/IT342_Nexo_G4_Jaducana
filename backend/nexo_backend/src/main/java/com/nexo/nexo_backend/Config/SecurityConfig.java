@@ -1,6 +1,8 @@
 package com.nexo.nexo_backend.Config;
 
 import com.nexo.nexo_backend.Service.CustomOAuth2UserService;
+import com.nexo.nexo_backend.Entity.UserEntity;
+import com.nexo.nexo_backend.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
@@ -21,6 +24,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfig {
 
         private final CustomOAuth2UserService customOAuth2UserService;
+        private final UserRepository userRepository;
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -59,8 +63,13 @@ public class SecurityConfig {
                                     String firstName = name.split(" ")[0];
                                     String lastName = name.contains(" ") ? name.split(" ")[1] : "";
 
+                                    // Fetch user from database to get ID
+                                    Optional<UserEntity> userOptional = userRepository.findByEmail(email);
+                                    Long userId = userOptional.map(UserEntity::getId).orElse(null);
+
                                     String redirectUrl = "http://localhost:5173/oauth-success"
-                                            + "?firstname=" + firstName
+                                            + "?id=" + (userId != null ? userId : "")
+                                            + "&firstname=" + firstName
                                             + "&lastname=" + lastName
                                             + "&email=" + email
                                             + "&role=ROLE_USER";

@@ -10,6 +10,7 @@ export default function OAuthSuccess() {
     console.log("QUERY:", params.toString()); 
 
     const user = {
+      id: params.get("id") || params.get("userId"),
       firstname: params.get("firstname"),
       lastname: params.get("lastname"),
       email: params.get("email"),

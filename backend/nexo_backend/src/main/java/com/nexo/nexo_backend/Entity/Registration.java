@@ -1,6 +1,8 @@
 package com.nexo.nexo_backend.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "registrations")
@@ -22,12 +24,56 @@ public class Registration {
 
     private Integer slots;
 
+    //edited fields for easier access to event details in registration
+    private String eventName;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate eventDate;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate startDate;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate endDate;
+
+    private String eventTime;
+    private String locationName;
+    private String address;
+    private String city;
+    private Double eventPrice;
+    private String paymentType;
+    private String eventType;
+    private String recurrenceDays;
+
+    @Column(columnDefinition = "TEXT")
+    private String imageUrl;
+
     public Registration() {}
 
     public Registration(Event event, UserEntity user, Integer slots) {
         this.event = event;
         this.user = user;
         this.slots = slots;
+        this.eventName = event.getEventName();
+        this.eventDate = event.getDate();
+        this.startDate = event.getStartDate();
+        this.endDate = event.getEndDate();
+        this.eventTime = createEventTime(event);
+        this.locationName = event.getLocationName();
+        this.address = event.getAddress();
+        this.city = event.getCity();
+        this.eventPrice = event.getEventPrice();
+        this.paymentType = event.getPaymentType();
+        this.eventType = event.getEventType();
+        this.recurrenceDays = event.getRecurrenceDays();
+        this.imageUrl = event.getImageUrl();
+    }
+
+    private String createEventTime(Event event) {
+        if (event.getStartTime() != null && event.getEndTime() != null) {
+            return String.format("%s - %s", event.getStartTime().toString(), event.getEndTime().toString());
+        }
+        return null;
     }
 
     public Long getId() { return id; }
@@ -40,4 +86,43 @@ public class Registration {
 
     public Integer getSlots() { return slots; }
     public void setSlots(Integer slots) { this.slots = slots; }
+
+    public String getEventName() { return eventName; }
+    public void setEventName(String eventName) { this.eventName = eventName; }
+
+    public LocalDate getEventDate() { return eventDate; }
+    public void setEventDate(LocalDate eventDate) { this.eventDate = eventDate; }
+
+    public LocalDate getStartDate() { return startDate; }
+    public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
+
+    public LocalDate getEndDate() { return endDate; }
+    public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
+
+    public String getEventTime() { return eventTime; }
+    public void setEventTime(String eventTime) { this.eventTime = eventTime; }
+
+    public String getLocationName() { return locationName; }
+    public void setLocationName(String locationName) { this.locationName = locationName; }
+
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
+
+    public String getCity() { return city; }
+    public void setCity(String city) { this.city = city; }
+
+    public Double getEventPrice() { return eventPrice; }
+    public void setEventPrice(Double eventPrice) { this.eventPrice = eventPrice; }
+
+    public String getPaymentType() { return paymentType; }
+    public void setPaymentType(String paymentType) { this.paymentType = paymentType; }
+
+    public String getEventType() { return eventType; }
+    public void setEventType(String eventType) { this.eventType = eventType; }
+
+    public String getRecurrenceDays() { return recurrenceDays; }
+    public void setRecurrenceDays(String recurrenceDays) { this.recurrenceDays = recurrenceDays; }
+
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }

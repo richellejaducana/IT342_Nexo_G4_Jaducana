@@ -14,6 +14,7 @@ import ManageEvent from "./components/ManageEvent";
 import EditEvent from "./components/EditEvent";
 import RegisterEvent from "./components/RegisterEvent";
 import PaymentPage from "./components/PaymentPage";
+import Users from "./components/Users";
 function App() {
   
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/manage-events" element={<ManageEvent />} />
 <Route path="/edit-event/:id" element={<EditEvent />} />
 <Route path="/payment" element={<PaymentPage />} />
+<Route path="/users" element={<Users />} />
        </Routes>
        </Router>
   )

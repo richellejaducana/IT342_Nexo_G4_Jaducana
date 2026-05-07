@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/UserDashboard.css"; // reuse your existing styles
+import "../css/UserDashboard.css";
+import "../css/AdminDashboard.css";
+import AdminHeader from "./header/AdminHeader.jsx";
 import { supabase } from "../utils/supabaseClient";
 const ManageEvent = () => {
   const [events, setEvents] = useState([]);
@@ -52,53 +54,57 @@ const ManageEvent = () => {
   };
 
   return (
-    <div className="events-section">
+    <div className="admin-dashboard">
+      <AdminHeader />
 
-      <div className="section-header">
-        <h2>Manage Events</h2>
-      </div>
+      <main className="main-content">
+        <div className="main-header">
+          <h1 className="welcome">Manage Events</h1>
+          <p className="subtitle">Edit or delete existing events.</p>
+        </div>
 
-      <div className="events-grid">
-        {events.map((event) => (
-          <div key={event.id} className="event-card">
-
-            <div className="event-image">
-              <img
-                src={event.imageUrl || "https://via.placeholder.com/300"}
-                alt={event.eventName}
-              />
-              <span className="event-date">
-                {formatDate(event.date)}
-              </span>
-            </div>
-
-            <div className="event-details">
-              <h3>{event.eventName}</h3>
-
-              <p className="event-location">
-                {event.locationName}, {event.city}
-              </p>
-
-              <button
-                className="view-btn"
-                onClick={() => navigate(`/edit-event/${event.id}`)}
-              >
-                Edit Event
-              </button>
-
-              <button
-    className="view-btn"
-    style={{ background: "#ff4d4f" }}
-    onClick={() => handleDelete(event)}
-  >
-    Delete
-  </button>
-
-            </div>
-
+        <div className="events-section">
+          <div className="section-header">
+            <h2>Manage Events</h2>
           </div>
-        ))}
-      </div>
+
+          <div className="events-grid">
+            {events.map((event) => (
+              <div key={event.id} className="event-card">
+                <div className="event-image">
+                  <img
+                    src={event.imageUrl || "https://via.placeholder.com/300"}
+                    alt={event.eventName}
+                  />
+                  <span className="event-date">
+                    {formatDate(event.date)}
+                  </span>
+                </div>
+
+                <div className="event-details">
+                  <h3>{event.eventName}</h3>
+                  <p className="event-location">
+                    {event.locationName}, {event.city}
+                  </p>
+                  <button
+                    className="view-btn"
+                    onClick={() => navigate(`/edit-event/${event.id}`)}
+                  >
+                    Edit Event
+                  </button>
+                  <button
+                    className="view-btn"
+                    style={{ background: "#ff4d4f" }}
+                    onClick={() => handleDelete(event)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
     </div>
   );
 };

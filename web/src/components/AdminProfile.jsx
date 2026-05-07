@@ -1,6 +1,8 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../css/AdminDashboard.css";
+import AdminHeader from "./header/AdminHeader.jsx";
 
 const AdminProfile = () => {
   const user = JSON.parse(localStorage.getItem("user")) || {};
@@ -12,32 +14,16 @@ const AdminProfile = () => {
   };
 
   return (
-    <div className="admin-dashboard create-event-page">
-      <aside className="sidebar">
-        <div className="sidebar-top">
-          <h2 className="app-title">Nexo Admin</h2>
-        </div>
-
-        <nav className="admin-nav">
-          <button className={`nav-item`} onClick={() => handleNavigate('/admin-dashboard')}>Dashboard</button>
-          <button className={`nav-item active`} onClick={() => handleNavigate('/admin-profile')}>Admin Profile</button>
-          <button className={`nav-item`} onClick={() => handleNavigate('/create-event')}>Create Event</button>
-          <button className={`nav-item`} onClick={() => handleNavigate('/manage-events')}>Manage Events</button>
-          <button className={`nav-item`} onClick={() => handleNavigate('/users')}>Users</button>
-        </nav>
-
-        <div className="sidebar-bottom">
-          <button className="logout-btn" onClick={() => { localStorage.clear(); handleNavigate('/login'); }}>Logout</button>
-        </div>
-      </aside>
+    <div className="admin-dashboard">
+      <AdminHeader />
 
       <main className="main-content">
-        <header className="main-header">
+        <div className="main-header">
           <h1 className="welcome">Welcome, {user?.firstname || "Admin"} {user?.lastname || ""}</h1>
-          
-        </header>
+          <p className="subtitle">Your admin profile and quick actions.</p>
+        </div>
 
-        <section className="cards-grid">
+        <div className="cards-grid">
           <div className="profile-card">
             <div className="profile-card-header">
               <div className="avatar">{(user?.firstname || "A").charAt(0)}</div>
@@ -67,7 +53,7 @@ const AdminProfile = () => {
               <li className="action-link" onClick={() => navigate('/create-event')}>Create new event</li>
             </ul>
           </div>
-        </section>
+        </div>
       </main>
     </div>
   );

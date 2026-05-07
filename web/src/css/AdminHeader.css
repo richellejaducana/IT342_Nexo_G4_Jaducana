@@ -1,0 +1,20 @@
+.admin-header {
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.admin-header .navigation a,
+.admin-header .logout-link {
+  color: #1B055E;
+}
+
+.admin-header .navigation a:hover,
+.admin-header .logout-link:hover {
+  color: #5b4dff;
+}
+
+.admin-header .profile-circle {
+  background-color: #5b4dff;
+  color: #ffffff;
+  border: 1px solid rgba(91, 77, 255, 0.2);
+}

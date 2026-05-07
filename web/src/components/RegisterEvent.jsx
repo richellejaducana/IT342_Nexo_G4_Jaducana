@@ -45,8 +45,16 @@ const passedEvent = location.state?.event;
 
 console.log("USER FROM LOCALSTORAGE:", user);
 
-if (!user || !user.id) {
-  alert("User not logged in or missing ID");
+if (!user) {
+  alert("User not logged in");
+  return;
+}
+
+const userId = user.id || user.user_id;
+if (!userId) {
+  alert("User ID not found. Please log in again.");
+  localStorage.clear();
+  navigate("/login");
   return;
 } // 👈 IMPORTANT
 
@@ -57,7 +65,7 @@ if (!user || !user.id) {
         },
         body: JSON.stringify({
           eventId: event.id,
-          userId: user.id, // 👈 FOREIGN KEY
+          userId: userId, // 👈 FOREIGN KEY
           slots: Number(slots),
         }),
       });

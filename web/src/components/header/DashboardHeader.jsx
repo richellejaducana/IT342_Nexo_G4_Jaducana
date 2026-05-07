@@ -8,6 +8,11 @@ function DashboardHeader() {
   const [initials, setInitials] = useState("");
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
 useEffect(() => {
   const user = JSON.parse(localStorage.getItem("user") || "null");
 
@@ -33,9 +38,10 @@ useEffect(() => {
 
         <nav className="navigation">
           <a href="#home">HOME</a>
-           <a href="#program">PROGRAMS</a>
-            <a href="#program">EVENTS</a>
-         <img src={NotifEmoji} alt="Notifications" className="notif-icon" />
+          <a href="#program">PROGRAMS</a>
+          <a href="#program">EVENTS</a>
+          <a href="#logout" className="logout-link" onClick={(e) => { e.preventDefault(); handleLogout(); }}>LOGOUT</a>
+          <img src={NotifEmoji} alt="Notifications" className="notif-icon" />
         </nav>
 
         {/* PROFILE CIRCLE */}
@@ -53,4 +59,4 @@ useEffect(() => {
   );
 }
 
-export default DashboardHeader;
+export default DashboardHeader; 
