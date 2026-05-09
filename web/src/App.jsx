@@ -15,6 +15,8 @@ import EditEvent from "./components/EditEvent";
 import RegisterEvent from "./components/RegisterEvent";
 import PaymentPage from "./components/PaymentPage";
 import Users from "./components/Users";
+import PaymentManagement from "./components/PaymentManagement";
+import UserPaymentStatus from "./components/UserPaymentStatus";
 function App() {
   
   return (
@@ -39,6 +41,8 @@ function App() {
 <Route path="/edit-event/:id" element={<EditEvent />} />
 <Route path="/payment" element={<PaymentPage />} />
 <Route path="/users" element={<Users />} />
+<Route path="/payment-management" element={<PaymentManagement />} />
+<Route path="/payment-status" element={<UserPaymentStatus />} />
        </Routes>
        </Router>
   )

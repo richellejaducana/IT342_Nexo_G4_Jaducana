@@ -1,0 +1,261 @@
+.payment-status {
+  min-height: 100vh;
+  background: #f8f9fa;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.main-content {
+  margin-left: 0;
+  flex: 1;
+  padding: 120px 48px 36px;
+}
+
+.main-header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.welcome {
+  margin: 0;
+  font-size: 28px;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 8px 0 0 0;
+  color: #666;
+  font-size: 16px;
+}
+
+.loading {
+  text-align: center;
+  padding: 100px 20px;
+  color: #666;
+  font-size: 18px;
+}
+
+.no-registrations {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.empty-state h2 {
+  margin: 0 0 12px 0;
+  color: #1a1a1a;
+  font-size: 24px;
+}
+
+.empty-state p {
+  margin: 0 0 24px 0;
+  color: #666;
+  font-size: 16px;
+}
+
+.browse-events-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #5b4dff;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.browse-events-btn:hover {
+  background: #4a3cc7;
+}
+
+.registrations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 24px;
+}
+
+.registration-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e9ecef;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.registration-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+  position: relative;
+}
+
+.event-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.status-indicator {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.status-text {
+  color: white;
+}
+
+.card-content {
+  padding: 24px;
+}
+
+.event-title {
+  margin: 0 0 16px 0;
+  color: #1a1a1a;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.event-details {
+  margin-bottom: 20px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: 600;
+  color: #666;
+  font-size: 14px;
+}
+
+.value {
+  color: #1a1a1a;
+  font-size: 14px;
+}
+
+.payment-info {
+  border-top: 1px solid #e9ecef;
+  padding-top: 16px;
+}
+
+.status-message {
+  font-size: 16px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.pending-notice {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.pending-notice p {
+  margin: 0;
+  color: #856404;
+  font-size: 14px;
+}
+
+.approved-notice {
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.approved-notice p {
+  margin: 0;
+  color: #155724;
+  font-size: 14px;
+}
+
+.rejected-notice {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.rejected-notice p {
+  margin: 4px 0;
+  color: #721c24;
+  font-size: 14px;
+}
+
+.resubmit-btn {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.resubmit-btn:hover {
+  background: #c82333;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 100px 16px 20px;
+  }
+
+  .registrations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+
+  .event-title {
+    font-size: 18px;
+  }
+}

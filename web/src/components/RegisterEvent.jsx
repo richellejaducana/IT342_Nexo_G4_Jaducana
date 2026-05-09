@@ -187,7 +187,7 @@ if (!userId) {
 
 
           {/* PAYMENT */}
-          {event.paymentType === "PAID" && (
+          {event.paymentType?.toUpperCase() === "PAID" && (
             <div className="register-payment-box">
               <h3>Payment Summary</h3>
               <p>Total: ₱{event.eventPrice * slots}</p>

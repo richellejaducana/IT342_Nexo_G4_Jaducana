@@ -192,15 +192,7 @@ export default function UserProfile() {
               <span>Events</span>
             </div>
 
-            <div>
-              <h4>340</h4>
-              <span>Followers</span>
-            </div>
-
-            <div>
-              <h4>120</h4>
-              <span>Following</span>
-            </div>
+  
           </div>
         </div>
       </div>
@@ -219,12 +211,7 @@ export default function UserProfile() {
         >
           About
         </button>
-        <button
-          className={`tab-btn ${activeTab === "followers" ? "active" : ""}`}
-          onClick={() => setActiveTab("followers")}
-        >
-          Followers
-        </button>
+        
       </div>
 
       {/* TAB CONTENT */}

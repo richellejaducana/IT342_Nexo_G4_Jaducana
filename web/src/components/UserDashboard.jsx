@@ -43,8 +43,11 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
+        console.log("Fetching events from http://localhost:8080/api/events");
         const res = await fetch("http://localhost:8080/api/events");
+        console.log("Response status:", res.status);
         const data = await res.json();
+        console.log("Events fetched:", data);
         setEvents(data);
       } catch (err) {
         console.error("Failed to fetch events:", err);
@@ -94,6 +97,23 @@ const Dashboard = () => {
       </section>
 
 
+      {/* USER REGISTRATIONS STATUS */}
+      <section className="user-status-section">
+        <div className="status-card">
+          <div className="status-content">
+            <h2>My Registrations</h2>
+            <p>Check the status of your event registrations and payments</p>
+            <button
+              className="status-btn"
+              onClick={() => navigate('/payment-status')}
+            >
+              View Payment Status
+            </button>
+          </div>
+          <div className="status-icon">📋</div>
+        </div>
+      </section>
+
       {/* EVENTS */}
       <section className="events-section">
 
@@ -102,44 +122,54 @@ const Dashboard = () => {
           <span>View All</span>
         </div>
 
-        <div className="events-grid">
+        {loading ? (
+          <div style={{ padding: '20px', textAlign: 'center' }}>
+            <p>Loading events...</p>
+          </div>
+        ) : events.length === 0 ? (
+          <div style={{ padding: '20px', textAlign: 'center' }}>
+            <p>No events found. Check the console for more details.</p>
+          </div>
+        ) : (
+          <div className="events-grid">
 
-          {events.map((event) => (
-            <div key={event.id} className="event-card">
+            {events.map((event) => (
+              <div key={event.id} className="event-card">
 
-              <div className="event-image">
-               <img
-  src={event.imageUrl || "https://via.placeholder.com/300"}
-  alt={event.eventName}
-/>
-               <span className="event-date">
- {formatEventDate(event)}
-</span>
+                <div className="event-image">
+                 <img
+    src={event.imageUrl || "https://via.placeholder.com/300"}
+    alt={event.eventName}
+  />
+                 <span className="event-date">
+   {formatEventDate(event)}
+  </span>
+                </div>
+
+                <div className="event-details">
+
+                  <span className="event-category">{event.category}</span>
+
+                  <h3>{event.eventName}</h3>
+
+  <p className="event-location">
+    {event.locationName}, {event.city}
+  </p>
+
+                 <button
+    className="view-btn"
+    onClick={() => navigate(`/event/${event.id}`)}
+  >
+    View Event
+  </button>
+
+                </div>
+
               </div>
+            ))}
 
-              <div className="event-details">
-
-                <span className="event-category">{event.category}</span>
-
-                <h3>{event.eventName}</h3>
-
-<p className="event-location">
-  {event.locationName}, {event.city}
-</p>
-
-               <button
-  className="view-btn"
-  onClick={() => navigate(`/event/${event.id}`)}
->
-  View Event
-</button>
-
-              </div>
-
-            </div>
-          ))}
-
-        </div>
+          </div>
+        )}
 
       </section>
 

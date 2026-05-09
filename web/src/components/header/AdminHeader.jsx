@@ -37,6 +37,7 @@ function AdminHeader() {
           <a href="#dashboard" onClick={(e) => { e.preventDefault(); navigate("/admin-dashboard"); }}>DASHBOARD</a>
           <a href="#create" onClick={(e) => { e.preventDefault(); navigate("/create-event"); }}>CREATE EVENT</a>
           <a href="#manage" onClick={(e) => { e.preventDefault(); navigate("/manage-events"); }}>MANAGE EVENTS</a>
+          <a href="#payments" onClick={(e) => { e.preventDefault(); navigate("/payment-management"); }}>PAYMENTS</a>
           <a href="#users" onClick={(e) => { e.preventDefault(); navigate("/users"); }}>USERS</a>
         
           <a href="#logout" className="logout-link" onClick={(e) => { e.preventDefault(); handleLogout(); }}>LOGOUT</a>

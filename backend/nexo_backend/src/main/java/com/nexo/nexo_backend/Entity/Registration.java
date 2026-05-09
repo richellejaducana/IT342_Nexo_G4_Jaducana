@@ -1,9 +1,12 @@
 package com.nexo.nexo_backend.Entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Table(name = "registrations")
 public class Registration {
@@ -48,6 +51,12 @@ public class Registration {
     @Column(columnDefinition = "TEXT")
     private String imageUrl;
 
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus paymentStatus = PaymentStatus.PENDING;
+
+    @OneToOne(mappedBy = "registration", cascade = CascadeType.ALL)
+    private Payment payment;
+
     public Registration() {}
 
     public Registration(Event event, UserEntity user, Integer slots) {
@@ -67,6 +76,11 @@ public class Registration {
         this.eventType = event.getEventType();
         this.recurrenceDays = event.getRecurrenceDays();
         this.imageUrl = event.getImageUrl();
+
+        // Set payment status based on payment type
+        if ("FREE".equals(event.getPaymentType())) {
+            this.paymentStatus = PaymentStatus.APPROVED;
+        }
     }
 
     private String createEventTime(Event event) {
@@ -125,4 +139,10 @@ public class Registration {
 
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
+    public PaymentStatus getPaymentStatus() { return paymentStatus; }
+    public void setPaymentStatus(PaymentStatus paymentStatus) { this.paymentStatus = paymentStatus; }
+
+    public Payment getPayment() { return payment; }
+    public void setPayment(Payment payment) { this.payment = payment; }
 }

@@ -113,6 +113,28 @@
   box-shadow: 0 10px 30px rgba(11,8,35,0.06);
 }
 
+.events-created-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.events-created-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(11,8,35,0.1);
+}
+
+.stat-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 8px 0;
+}
+
+.stat-description {
+  font-size: 14px;
+  color: #6b6b85;
+  margin: 4px 0 0 0;
+}
+
 .stat-title{
   margin: 0 0 8px 0;
 }
@@ -121,6 +143,107 @@
   margin: 0;
   padding: 0 0 0 18px;
   color: #44456a;
+}
+
+.events-list-section {
+  margin-top: 30px;
+  background: var(--light);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(11,8,35,0.06);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-header h2 {
+  margin: 0;
+  color: var(--dark);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #6b6b85;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.close-btn:hover {
+  background-color: #f4f6fb;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.event-card {
+  background: var(--light);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(11,8,35,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(11,8,35,0.1);
+}
+
+.event-image {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.event-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+.event-details {
+  padding: 16px;
+}
+
+.event-details h3 {
+  margin: 0 0 8px 0;
+  color: var(--dark);
+  font-size: 18px;
+}
+
+.event-location {
+  margin: 0 0 12px 0;
+  color: #6b6b85;
+  font-size: 14px;
+}
+
+.registration-count {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.registration-number {
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 14px;
 }
 
 @media (max-width: 880px){

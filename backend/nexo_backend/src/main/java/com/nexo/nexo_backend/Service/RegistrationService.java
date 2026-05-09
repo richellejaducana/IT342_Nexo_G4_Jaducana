@@ -4,6 +4,8 @@ import com.nexo.nexo_backend.Entity.*;
 import com.nexo.nexo_backend.Repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -14,6 +16,11 @@ public class RegistrationService {
     private final UserRepository userRepository;
 
     public Registration register(Long eventId, Long userId, Integer slots) {
+        // Check for duplicate registration
+        Optional<Registration> existingRegistration = registrationRepository.findByEventIdAndUserId(eventId, userId);
+        if (existingRegistration.isPresent()) {
+            throw new RuntimeException("User is already registered for this event");
+        }
 
         Event event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new RuntimeException("Event not found"));
@@ -22,7 +29,21 @@ public class RegistrationService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         Registration registration = new Registration(event, user, slots);
-
         return registrationRepository.save(registration);
+    }
+
+    public List<Registration> getRegistrationsByEvent(Long eventId) {
+        return registrationRepository.findByEventId(eventId);
+    }
+
+    public List<Registration> getRegistrationsByUser(Long userId) {
+        return registrationRepository.findAll().stream()
+                .filter(reg -> reg.getUser().getId().equals(userId))
+                .toList();
+    }
+
+    public Registration getRegistrationById(Long registrationId) {
+        return registrationRepository.findById(registrationId)
+                .orElseThrow(() -> new RuntimeException("Registration not found"));
     }
 }
