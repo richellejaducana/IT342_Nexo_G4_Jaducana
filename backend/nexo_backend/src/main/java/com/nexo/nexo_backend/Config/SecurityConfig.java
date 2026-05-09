@@ -47,7 +47,14 @@ public class SecurityConfig {
                                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                                                 .anyRequest().authenticated())
 
-                        .oauth2Login(oauth -> oauth
+                        .exceptionHandling(ex -> ex
+    .authenticationEntryPoint((request, response, authException) -> {
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setContentType("application/json");
+        response.getWriter().write("{\"error\":\"Unauthorized\"}");
+    })
+)
+                                                .oauth2Login(oauth -> oauth
                                 .userInfoEndpoint(user -> user
                                         .userService(customOAuth2UserService)
                                 )
