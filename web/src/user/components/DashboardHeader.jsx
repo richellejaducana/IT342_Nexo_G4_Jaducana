@@ -37,8 +37,8 @@ useEffect(() => {
       <div className="nav-container">
 
         <nav className="navigation">
-          <a href="#home">HOME</a>
-          <a href="#program">PROGRAMS</a>
+          <a href="#home" onClick={(e) => { e.preventDefault(); navigate("/userDashboard"); }}>HOME</a>
+         
           <a href="#program">EVENTS</a>
           <a href="#logout" className="logout-link" onClick={(e) => { e.preventDefault(); handleLogout(); }}>LOGOUT</a>
           <img src={NotifEmoji} alt="Notifications" className="notif-icon" />
